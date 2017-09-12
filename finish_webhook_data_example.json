@@ -1,0 +1,11 @@
+{
+  "to": "drobnik.jakubd@apifier.com",
+  "subject": "test",
+  "text": "text",
+  "attachResults": [
+    {
+      "format": "csv",
+      "simplified": 1
+    }
+  ]
+}
