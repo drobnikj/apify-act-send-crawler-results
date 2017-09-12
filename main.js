@@ -1,13 +1,21 @@
 const Apify = require('apify');
 const typeCheck = require('type-check').typeCheck;
+const Handlebars = require('handlebars');
 
 // Input data attributes types
 const INPUT_DATA_TYPES = `{
         to: String,
         subject: String,
         text: String,
-        attachResults: Maybe [Object]
+        attachResults: Maybe [Object],
+        textContext: Maybe Object,
     }`;
+
+const processHandlebars = (textTemplate, context) => {
+    const compiler = Handlebars.compile(textTemplate);
+    const text = compiler(context);
+    return text;
+};
 
 Apify.main(async () => {
     // Get input of your act
@@ -22,6 +30,12 @@ Apify.main(async () => {
         console.log(`Invalid input:\n${JSON.stringify(input)}\nData types:\n${INPUT_TYPES}\nAct failed!`);
         throw new Error('Invalid input data');
     }
+
+    // Replace handlebars
+    const textContext = data.textContext ? Object.assign(data.textContext, { actId, executionId }) : { actId, executionId };
+    const text = processHandlebars(data.text, textContext);
+    const subject = processHandlebars(data.subject, textContext);
+
 
     // Download results and create attachments
     if (data.attachResults) {
@@ -42,8 +56,8 @@ Apify.main(async () => {
             contentType: 'application/json',
             body: JSON.stringify({
                 to: data.to,
-                subject: data.subject,
-                text: data.text,
+                subject,
+                text,
                 attachments: attachments,
             })
         }

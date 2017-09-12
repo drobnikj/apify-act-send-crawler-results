@@ -17,10 +17,10 @@ You can find your API token on [your Apifier account page](https://www.apifier.c
 **Example:**
 ```json
 {
-  "to": "example@example.com"
-  "subject": "Email subject"
+  "to": "example@example.com",
+  "subject": "Execution ID: {{executionId}} results",
   "text": "Email text",
-  "attachResults" [
+  "attachResults": [
     {
         "format": "csv",
         "simplified": 1
@@ -38,3 +38,5 @@ You can find your API token on [your Apifier account page](https://www.apifier.c
 - `text`(String) - Email text
 
 - `attachResults`(Array) - Array of types of results that will be attach to email. Attribute `format` is required for each type ([all types of format](https://www.apifier.com/api-reference#/reference/results)). It uses same attributes as [Get Execution results api endpoint](https://www.apifier.com/api-reference#/reference/results/execution-results/get-execution-results), so you can use `simplified`, `offset`, `limit` etc.
+
+- `textContext`(Object) - Object is used for process `subject` and `text` template. It replace all {{attribute}} in `subject` and `text` strings with proper attribute from this object. By default object has `executionId` and `actId` attributes.
