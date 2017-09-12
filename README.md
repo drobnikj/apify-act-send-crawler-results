@@ -19,7 +19,7 @@ You can find your API token on [your Apifier account page](https://www.apifier.c
 {
   "to": "example@example.com",
   "subject": "Execution ID: {{executionId}} results",
-  "text": "Email text",
+  "text": "Link to html results: https://api.apifier.com/v1/execs/{{executionId}}/results?format=html&simplified=1",
   "attachResults": [
     {
         "format": "csv",
