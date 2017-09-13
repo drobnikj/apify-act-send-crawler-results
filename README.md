@@ -39,4 +39,4 @@ You can find your API token on [your Apifier account page](https://www.apifier.c
 
 - `attachResults`(Array) - Array of types of results that will be attach to email. Attribute `format` is required for each type ([all types of format](https://www.apifier.com/api-reference#/reference/results)). Use same attributes as [Get Execution results api endpoint](https://www.apifier.com/api-reference#/reference/results/execution-results/get-execution-results), `simplified`, `offset`, `limit` etc.
 
-- `textContext`(Object) - This object is used for process `subject` and `text`. It replace all {{key}} in `subject` and `text` with proper value from this object. By default object has `executionId` and `actId` attributes. Same behavior as (HandlebarsJS)[http://handlebarsjs.com/]
+- `textContext`(Object) - This object is used for process `subject` and `text`. It replace all {{key}} in `subject` and `text` with proper value from this object. By default object has `executionId` and `actId` attributes. Same behavior as [HandlebarsJS](http://handlebarsjs.com/).
