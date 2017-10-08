@@ -27,7 +27,7 @@ Apify.main(async () => {
 
     // Checks input
     if (!typeCheck(INPUT_DATA_TYPES, data)) {
-        console.log(`Invalid input:\n${JSON.stringify(input)}\nData types:\n${INPUT_TYPES}\nAct failed!`);
+        console.log(`Invalid input:\n${JSON.stringify(input)}\nData types:\n${INPUT_DATA_TYPES}\nAct failed!`);
         throw new Error('Invalid input data');
     }
 
@@ -50,17 +50,11 @@ Apify.main(async () => {
     }
 
     // Send mail
-    const result = await Apify.call({
-        actId: 'apify/send-mail',
-        input: {
-            contentType: 'application/json',
-            body: JSON.stringify({
-                to: data.to,
-                subject,
-                text,
-                attachments: attachments,
-            })
-        }
-    });
-    console.log(result)
+    const result = await Apify.call('apify/send-mail', {
+            to: data.to,
+            subject,
+            text,
+            attachments: attachments,
+        });
+    console.log(result);
 });
