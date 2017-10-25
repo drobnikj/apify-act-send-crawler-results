@@ -1,0 +1,24 @@
+{
+  "name": "apify-act-send-crawler-results",
+  "version": "1.0.0",
+  "description": "This act downloads results from Apify crawler and send them to email as attachments. It is designed to run from [crawler finish webhook](https://www.apify.com/docs#crawler-finishWebhookUrl).",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drobnikj/apify-act-send-crawler-results.git"
+  },
+  "author": "Jakub Drobnik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drobnikj/apify-act-send-crawler-results/issues"
+  },
+  "homepage": "https://github.com/drobnikj/apify-act-send-crawler-results#readme",
+  "dependencies": {
+    "apify": "^0.4.29",
+    "handlebars": "^4.0.11",
+    "type-check": "^0.3.2"
+  }
+}
