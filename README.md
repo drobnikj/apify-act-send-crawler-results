@@ -40,3 +40,4 @@ You can find your API token on [your Apify account page](https://my.apify.com/ac
 - `attachResults`(Array) - Array of types of results that will be attach to email. Attribute `format` is required for each type ([all types of format](https://www.apify.com/docs/api-v1#/reference/results)). Use same attributes as [Get Execution results api endpoint](https://www.apify.com/docs/api-v1#/reference/results/last-execution-results/get-last-execution-results), `simplified`, `offset`, `limit` etc.
 
 - `textContext`(Object) - This object is used for process `subject` and `text`. It replace all {{key}} in `subject` and `text` with proper value from this object. By default object has `executionId` and `actId` attributes. Same behavior as [HandlebarsJS](http://handlebarsjs.com/).
+
