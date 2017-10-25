@@ -1,4 +1,4 @@
-# Apify act send crawler results ( [Apify library](https://www.apify.com/drobnikj/send-crawler-results) )
+# Apify act send crawler results ([Apify library](https://www.apify.com/drobnikj/send-crawler-results))
 This act downloads results from Apify crawler and send them to email as attachments.
 It is designed to run from [crawler finish webhook](https://www.apify.com/docs#crawler-finishWebhookUrl).
 
