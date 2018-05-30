@@ -1,6 +1,6 @@
 const Apify = require('apify');
 const typeCheck = require('type-check').typeCheck;
-const HandlebarsCustom = require('handlebars');
+const Handlebars = require('handlebars');
 
 // Input data attributes types
 const INPUT_DATA_TYPES = `{
@@ -13,7 +13,7 @@ const INPUT_DATA_TYPES = `{
     }`;
 
 const processHandlebars = (textTemplate, context) => {
-    const compiler = HandlebarsCustom.compile(textTemplate);
+    const compiler = Handlebars.compile(textTemplate);
     const text = compiler(context);
     return text;
 };
