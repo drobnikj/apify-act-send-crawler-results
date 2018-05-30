@@ -20,6 +20,7 @@ You can find your API token on [your Apify account page](https://my.apify.com/ac
   "to": "example@example.com",
   "subject": "Execution ID: {{executionId}} results",
   "text": "Link to html results: https://api.apify.com/v1/execs/{{executionId}}/results?format=html&simplified=1",
+  "html":  "Link to html <a href=\"https://api.apify.com/v1/execs/{{executionId}}/results?format=html&simplified=1\"> results </a>",
   "attachResults": [
     {
         "format": "csv",
@@ -36,6 +37,8 @@ You can find your API token on [your Apify account page](https://my.apify.com/ac
 - `subject`(String) - Email subject
 
 - `text`(String) - Email text
+
+- `html`(String) - Email html body
 
 - `attachResults`(Array) - Array of types of results that will be attach to email. Attribute `format` is required for each type ([all types of format](https://www.apify.com/docs/api-v1#/reference/results)). Use same attributes as [Get Execution results api endpoint](https://www.apify.com/docs/api-v1#/reference/results/last-execution-results/get-last-execution-results), `simplified`, `offset`, `limit` etc.
 
