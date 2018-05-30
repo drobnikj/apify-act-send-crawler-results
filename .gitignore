@@ -1,1 +1,4 @@
 .idea
+apify_local
+package.json
+package-lock.json

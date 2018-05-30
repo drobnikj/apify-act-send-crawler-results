@@ -1,0 +1,5 @@
+{
+  "_id": "YR5Dzk2Tvv6TXRvaY",
+  "actId": "jna4DyMuAWKBDdEdh",
+  "data": "{\n\t\"to\": \"vaclav@apify.com\",\n\t\"subject\": \"Aktuální nabídky zkrácených úvazků z portálu Jobs.cz\",\n\t\"html\": \"Dobrý den Moniko, <br/> Na těchto odkazech najdete všechny nabídky z portálu Jobs.cz. <br/> <a href = \\\"https://api.apify.com/v1/execs/{{executionId}}/results?format=csv&simplified=1\\\"> csv </a><br><a href=\\\"https://api.apify.com/v1/execs/{{executionId}}/results?format=json&simplified=1\\\"> json </a><br> <a href = \\\"https://api.apify.com/v1/execs/{{executionId}}/results?format=xlsx&simplified=1\\\" > excel </a><br> Pohodový den,<br> Apify team \"\n}"
+}

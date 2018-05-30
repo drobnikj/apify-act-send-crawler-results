@@ -27,7 +27,7 @@ Apify.main(async () => {
     const attachments = [];
 
     // Checks input
-    if (!(input.text || input.html)) throw new Error('Invalid input data, text or html missing.');
+    if (!(data.text || data.html)) throw new Error('Invalid input data, text or html missing.');
     if (!typeCheck(INPUT_DATA_TYPES, data)) {
         console.log(`Invalid input:\n${JSON.stringify(input)}\nData types:\n${INPUT_DATA_TYPES}\nAct failed!`);
         throw new Error('Invalid input data');
