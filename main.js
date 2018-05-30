@@ -1,18 +1,19 @@
 const Apify = require('apify');
 const typeCheck = require('type-check').typeCheck;
-const Handlebars = require('handlebars');
+const HandlebarsCustom = require('handlebars');
 
 // Input data attributes types
 const INPUT_DATA_TYPES = `{
         to: String,
         subject: String,
-        text: String,
+        text: Maybe String,
+        html: Maybe String,
         attachResults: Maybe [Object],
         textContext: Maybe Object,
     }`;
 
 const processHandlebars = (textTemplate, context) => {
-    const compiler = Handlebars.compile(textTemplate);
+    const compiler = HandlebarsCustom.compile(textTemplate);
     const text = compiler(context);
     return text;
 };
@@ -33,7 +34,8 @@ Apify.main(async () => {
 
     // Replace handlebars
     const textContext = data.textContext ? Object.assign(data.textContext, { actId, executionId }) : { actId, executionId };
-    const text = processHandlebars(data.text, textContext);
+    const text = data.text ? processHandlebars(data.text, textContext) : null;
+    const html = data.html ? processHandlebars(data.html, textContext) : null;
     const subject = processHandlebars(data.subject, textContext);
 
 
@@ -51,10 +53,11 @@ Apify.main(async () => {
 
     // Send mail
     const result = await Apify.call('apify/send-mail', {
-            to: data.to,
-            subject,
-            text,
-            attachments: attachments,
-        });
+        to: data.to,
+        subject:subject,
+        text:text,
+        html:html,
+        attachments: attachments,
+    });
     console.log(result);
 });
