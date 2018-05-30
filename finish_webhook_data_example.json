@@ -2,6 +2,7 @@
   "to": "drobnik.jakubd@apifier.com",
   "subject": "test",
   "text": "text",
+  "html": "Example Html with <a href=\"https://github.com\"> link to click </a>",
   "attachResults": [
     {
       "format": "csv",
