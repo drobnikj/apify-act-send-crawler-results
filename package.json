@@ -4,7 +4,8 @@
   "description": "This act downloads results from Apify crawler and send them to email as attachments. It is designed to run from [crawler finish webhook](https://www.apify.com/docs#crawler-finishWebhookUrl).",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,9 @@
   },
   "homepage": "https://github.com/drobnikj/apify-act-send-crawler-results#readme",
   "dependencies": {
-    "apify": "^0.5.36",
+    "apify": "^0.8.13",
     "handlebars": "^4.0.11",
+    "request-promise": "^4.2.2",
     "type-check": "^0.3.2"
   }
 }
