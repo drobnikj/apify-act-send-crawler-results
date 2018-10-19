@@ -1,6 +1,9 @@
 const Apify = require('apify');
 const typeCheck = require('type-check').typeCheck;
 const Handlebars = require('handlebars');
+const rp = require('request-promise');
+const querystring = require('querystring');
+
 
 // Input data attributes types
 const INPUT_DATA_TYPES = `{
@@ -42,12 +45,12 @@ Apify.main(async () => {
 
     // Download results and create attachments
     if (data.attachResults) {
-        for(let attachOpts of data.attachResults) {
-            const getResultsOpts = Object.assign(attachOpts, { executionId, attachment: 1 });
-            const results = await Apify.client.crawlers.getExecutionResults(getResultsOpts);
+        for (let attachOpts of data.attachResults) {
+            const getResultsOpts = Object.assign(attachOpts, { attachment: 1 });
+            const results = await rp(`https://api.apify.com/v1/execs/${executionId}/results?${querystring.stringify(getResultsOpts)}`, { encoding: null });
             attachments.push({
                 filename: `${executionId}.${attachOpts.format}`,
-                data: Buffer.from(results.items, 'utf8').toString('base64'),
+                data: results.toString('base64'),
             })
         }
     }
