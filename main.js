@@ -24,8 +24,7 @@ const processHandlebars = (textTemplate, context) => {
 Apify.main(async () => {
     // Get input of your act
     const input = await Apify.getValue('INPUT');
-    const actId = input.actId;
-    const executionId = input._id;
+    const { _id: executionId, datasetId } = input;
     const data = input.data ? JSON.parse(input.data) : {};
     const attachments = [];
 
@@ -37,7 +36,7 @@ Apify.main(async () => {
     }
 
     // Replace handlebars
-    const textContext = data.textContext ? Object.assign(data.textContext, { actId, executionId }) : { actId, executionId };
+    const textContext = data.textContext ? Object.assign(data.textContext, { executionId, ...input }) : { executionId, ...input };
     const text = data.text ? processHandlebars(data.text, textContext) : null;
     const html = data.html ? processHandlebars(data.html, textContext) : null;
     const subject = processHandlebars(data.subject, textContext);
@@ -47,21 +46,32 @@ Apify.main(async () => {
     if (data.attachResults) {
         for (let attachOpts of data.attachResults) {
             const getResultsOpts = Object.assign(attachOpts, { attachment: 1 });
-            const results = await rp(`https://api.apify.com/v1/execs/${executionId}/results?${querystring.stringify(getResultsOpts)}`, { encoding: null });
-            attachments.push({
-                filename: `${executionId}.${attachOpts.format}`,
-                data: results.toString('base64'),
-            })
+            let results;
+            let fileAttachment;
+            if (executionId) {
+                results = await rp(`https://api.apify.com/v1/execs/${executionId}/results?${querystring.stringify(getResultsOpts)}`, { encoding: null });
+                fileAttachment = {
+                    filename: `${executionId}.${attachOpts.format}`,
+                    data: results.toString('base64'),
+                }
+            } else {
+                results = await rp(`https://api.apify.com/v2/datasets/${datasetId}/items?${querystring.stringify(getResultsOpts)}`, { encoding: null });
+                fileAttachment = {
+                    filename: `${datasetId}.${attachOpts.format}`,
+                    data: results.toString('base64'),
+                }
+            }
+            attachments.push(fileAttachment)
         }
     }
 
     // Send mail
     const result = await Apify.call('apify/send-mail', {
         to: data.to,
-        subject:subject,
-        text:text,
-        html:html,
-        attachments: attachments,
+        subject,
+        text,
+        html,
+        attachments,
     });
     console.log(result);
 });

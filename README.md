@@ -1,10 +1,12 @@
-# Apify act send crawler results ([Apify library](https://www.apify.com/drobnikj/send-crawler-results))
-This act downloads results from Apify crawler and send them to email as attachments.
-It is designed to run from [crawler finish webhook](https://www.apify.com/docs#crawler-finishWebhookUrl).
+# Apify actor to send results ([Apify store](https://www.apify.com/drobnikj/send-crawler-results))
+This actor downloads results from Apify scraper/crawler and send them to email as attachments.
+It is designed to run from finish webhook of [Legacy PhantomJS Crawler](https://apify.com/apify/legacy-phantomjs-crawler).
 
-## Usage
+# Usage
 
-For a specific crawler set the following parameters:
+## From [Legacy PhantomJS Crawler](https://apify.com/apify/legacy-phantomjs-crawler) task
+
+For a specific task set the following parameters:
 
 ### Finish webhook URL (`finishWebhookUrl`)
 ```
@@ -40,7 +42,7 @@ You can find your API token on [your Apify account page](https://my.apify.com/ac
 
 - `html`(String) - Email html body
 
-- `attachResults`(Array) - Array of types of results that will be attach to email. Attribute `format` is required for each type ([all types of format](https://www.apify.com/docs/api-v1#/reference/results)). Use same attributes as [Get Execution results api endpoint](https://www.apify.com/docs/api-v1#/reference/results/last-execution-results/get-last-execution-results), `simplified`, `offset`, `limit` etc.
+- `attachResults`(Array) - Array of types of results that will be attach to email. Attribute `format` is required for each type ([all types of format](https://apify.com/docs/api/v2#/reference/datasets/item-collection/get-items)). Use same attributes as [Get dataset items api endpoint](https://apify.com/docs/api/v2#/reference/datasets/item-collection/get-items), `simplified`, `offset`, `limit` etc.
 
-- `textContext`(Object) - This object is used for process `subject` and `text`. It replace all {{key}} in `subject` and `text` with proper value from this object. By default object has `executionId` and `actId` attributes. Same behavior as [HandlebarsJS](http://handlebarsjs.com/).
+- `textContext`(Object) - This object is used for process `subject` and `text`. It replace all {{key}} in `subject` and `text` with proper value from this object. By default object has all attributes attributes gets on input. Same behavior as [HandlebarsJS](http://handlebarsjs.com/).
 

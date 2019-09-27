@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/drobnikj/apify-act-send-crawler-results#readme",
   "dependencies": {
-    "apify": "^0.8.13",
-    "handlebars": "^4.0.11",
-    "request-promise": "^4.2.2",
+    "apify": "^0.15.5",
+    "handlebars": "^4.3.3",
+    "request-promise": "^4.2.4",
     "type-check": "^0.3.2"
   }
 }

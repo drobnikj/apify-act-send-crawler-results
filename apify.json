@@ -1,11 +1,6 @@
 {
 	"name": "drobnikj/send-crawler-results",
-	"actId": null,
-	"version": {
-		"versionNumber": "0.1",
-		"buildTag": "beta",
-		"envVars": [],
-		"sourceType": "TARBALL",
-		"tarballUrl": null
-	}
+	"version": "0.1",
+	"buildTag": "beta",
+	"env": null
 }
