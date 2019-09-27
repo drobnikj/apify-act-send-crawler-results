@@ -20,9 +20,9 @@ You can find your API token on [your Apify account page](https://my.apify.com/ac
 ```json
 {
   "to": "example@example.com",
-  "subject": "Execution ID: {{executionId}} results",
-  "text": "Link to html results: https://api.apify.com/v1/execs/{{executionId}}/results?format=html&simplified=1",
-  "html":  "Link to html <a href=\"https://api.apify.com/v1/execs/{{executionId}}/results?format=html&simplified=1\"> results </a>",
+  "subject": "Run ID: {{runId}} results",
+  "text": "Link to html results: https://api.apify.com/v2/datasets/${datasetId}/items?format=html&simplified=1",
+  "html":  "Link to html <a href=\"https://api.apify.com/v2/datasets/${datasetId}/items??format=html&simplified=1\"> results </a>",
   "attachResults": [
     {
         "format": "csv",
